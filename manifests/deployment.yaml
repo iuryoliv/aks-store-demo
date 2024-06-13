@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy
+  labels:
+    app: deploy
+    kubernetes.azure.com/generator: devhub
+  namespace: namespace-workflow-1718319361734
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: deploy
+  template:
+    metadata:
+      labels:
+        app: deploy
+    spec:
+      containers:
+        - name: deploy
+          image: acrworkflow1718319361734.azurecr.io/image-workflow-1718319361734:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8000
